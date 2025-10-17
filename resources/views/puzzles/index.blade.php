@@ -23,14 +23,15 @@
                         </thead>
                         <tbody class="bg-white">
                         @if (session()->has('message'))
-            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
-                {{ session('message') }}
-            </div>
-        @endif
+                            <div class="mt-3 mb-4 list-disc list-inside text-sm text-green-600">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                             @foreach ($puzzles as $puzzle)
                                 <tr class="whitespace-nowrap">
                                     <td class="px-4 py-4 text-sm text-gray-500">{{ $puzzle->id }}</td>
                                     <td class="px-4 py-4">{{ $puzzle->nom }}</td>
+
                                     <td class="px-4 py-4">
                                         <x-link-button href="{{ route('puzzles.show', $puzzle->id) }}">
                                             @lang('Show')

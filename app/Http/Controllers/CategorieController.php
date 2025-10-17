@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\Puzzle;
+use App\Models\Puzzle;
 use App\Models\Categorie;
 
 

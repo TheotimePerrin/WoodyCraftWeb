@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PuzzleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PanierController;
+use App\Http\Controllers\AdresseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,35 +18,31 @@ use App\Http\Controllers\CategorieController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CategorieController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('puzzles', PuzzleController::class);
+
+
+    Route::resource('paniers', PanierController::class)->middleware('auth');
+    Route::get('/paiement', [PanierController::class, 'paiement'])->name('paniers.paiement');
+    Route::post('/paiement', [PanierController::class, 'store'])->name('paiement.store');
+    Route::get('/facture/pdf', [PanierController::class, 'facturePdf'])->name('facture.pdf');
+
+
+    Route::resource('adresses', AdresseController::class)->middleware('auth');
+    
+    Route::get('/puzzle/add/{id}', [PuzzleController::class, 'ajouterAuPanier'])->name('puzzle.add');
+    
+
+    Route::resource('categories', CategorieController::class);
+
 });
-
-Route::resource('puzzles', PuzzleController::class)->middleware('auth');
-
-Route::resource('puzzles', PuzzleController::class);
-
-Route::resource('categories', CategorieController::class)->middleware('auth');
-
-Route::resource('categories', CategorieController::class);
-Route::get('/categorie/{id}', [HomeController::class, 'showCategory'])->name('category.show');
-
-
-
-
-
-
-
 
 
 

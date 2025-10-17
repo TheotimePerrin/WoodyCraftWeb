@@ -21,8 +21,8 @@
                 <x-input-label for="nom" :value="__('Name')" />
                 <x-text-input id="nom" class="block mt-1 w-full" type="text" name="nom" :value="old('nom')" required autofocus />
                 
-                <x-input-label for="categorie_id" :value="__('categorie_id')" />
-                <x-text-input id="categorie_id" class="block mt-1 w-full" type="text" name="categorie_id" :value="old('categorie_id')" required autofocus />
+                <x-input-label for="categorie" :value="__('categorie')" />
+                <x-text-input id="categorie" class="block mt-1 w-full" type="text" name="categorie" :value="old('categorie')" required autofocus />
                 
                 <x-input-label for="description" :value="__('description')" />
                 <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus />
@@ -33,13 +33,9 @@
                 <x-input-label for="prix" :value="__('prix')" />
                 <x-text-input id="prix" class="block mt-1 w-full" type="number" name="prix" :value="old('prix')" step="0.01" required autofocus />
                 <x-input-error :messages="$errors->get('prix')" class="mt-2" />
-
-                <x-input-label for="stock" :value="__('stock')" />
-                <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" :value="old('stock')" step="1" required autofocus />
-                <x-input-error :messages="$errors->get('stock')" class="mt-2" />
             </div>
 
-            <div class="flex items-center justify-end mt-4" >
+            <div class="flex items-center justify-end mt-4">
                 <x-primary-button class="ml-3">
                     {{ __('Send') }}
                 </x-primary-button>

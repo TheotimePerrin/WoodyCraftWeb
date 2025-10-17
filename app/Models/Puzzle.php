@@ -17,9 +17,17 @@ class Puzzle extends Model
         'image',
         'stock',
     ];
+
+    // Relation avec la catégorie
     public function categorie()
     {
         return $this->belongsTo(Categorie::class);
     }
 
+    // Relation avec Panier via la table pivot "appartient"
+    public function paniers()
+    {
+        return $this->belongsToMany(Panier::class, 'appartient')
+                    ->withPivot('quantite');
+    }
 }

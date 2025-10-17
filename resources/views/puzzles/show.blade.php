@@ -39,5 +39,9 @@
             <h3 class="font-semibold text-xl text-gray-800 pt-2">@lang('Dernière mise à jour')</h3>
             <p>{{ $puzzle->updated_at->format('d/m/Y') }}</p>
         @endif
+        <x-link-button href="{{ route('puzzle.add', $puzzle->id) }}">
+            Ajouter au panier
+        </x-link-button>
+
     </x-puzzles-card>
 </x-app-layout>

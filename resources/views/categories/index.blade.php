@@ -16,29 +16,46 @@
                         </div>
                     @endif
 
-                    <table>
+                    <table class="min-w-full border">
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-2 py-2 text-xs text-gray-500">#</th>
-                                <th class="px-2 py-2 text-xs text-gray-500">Nom</th>
-                                <th class="px-2 py-2 text-xs text-gray-500"></th>
+                                <th class="px-2 py-2 text-xs text-gray-500">Nom / Puzzle</th>
+                                <th class="px-2 py-2 text-xs text-gray-500">Prix</th>
+
                             </tr>
                         </thead>
                         <tbody class="bg-white">
                             @foreach ($categories as $categorie)
-                                <tr class="whitespace-nowrap">
-                                    <td class="px-4 py-4 text-sm text-gray-500">{{ $categorie->id }}</td>
-                                    <td class="px-4 py-4">{{ $categorie->nom }}</td>
+                                <!-- Ligne catégorie -->
+                                <tr class="bg-gray-100 font-bold">
+                                    <td class="px-4 py-4">{{ $categorie->id }}</td>
+                                    <td class="px-4 py-4" colspan="2">{{ $categorie->nom }}</td>
                                     <td class="px-4 py-4">
-                                    <x-link-button href="{{ route('categories.show', $categorie->id) }}">
+                                        <x-link-button href="{{ route('categories.show', $categorie->id) }}">
                                             @lang('Show')
-                                    </x-link-button>
-
+                                        </x-link-button>
                                     </td>
                                 </tr>
+
+                                <!-- Lignes puzzles -->
+                                @foreach ($categorie->puzzles as $puzzle)
+                                    <tr class="whitespace-nowrap">
+                                        <td class="px-6 py-2 text-gray-500">- {{ $puzzle->id }}</td>
+                                        <td class="px-6 py-2">{{ $puzzle->nom }}</td>
+                                        <td class="px-6 py-2">{{ $puzzle->prix }} €</td>
+                                        <td class="px-6 py-2">
+                                            <x-link-button href="{{ route('puzzle.add', $puzzle->id) }}">
+                                                Ajouter au panier
+                                            </x-link-button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                             @endforeach
                         </tbody>
                     </table>
+
 
                 </div>
             </div>
