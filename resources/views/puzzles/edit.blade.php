@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit a puzzle') }}
+            {{ __('Edit puzzle') }}
         </h2>
     </x-slot>
 
@@ -34,16 +34,16 @@
 
             <!-- Categorie -->
             <div class="mt-4">
-                <x-input-label for="categorie" :value="__('Category')" />
+                <x-input-label for="categorie_id" :value="__('Category')" />
                 <x-text-input 
-                    id="categorie" 
+                    id="categorie_id" 
                     class="block mt-1 w-full" 
                     type="text" 
-                    name="categorie" 
-                    :value="old('categorie', $puzzle->categorie)" 
+                    name="categorie_id" 
+                    :value="old('categorie_id', $puzzle->categorie_id)" 
                     required 
                 />
-                <x-input-error :messages="$errors->get('categorie')" class="mt-2" />
+                <x-input-error :messages="$errors->get('categorie_id')" class="mt-2" />
             </div>
 
             <!-- Description -->
@@ -89,6 +89,9 @@
 
             <!-- Submit Button -->
             <div class="flex items-center justify-end mt-4">
+                <a href="{{ route('puzzles.index') }}" class="ml-3 underline text-sm text-gray-600">
+                    {{ __('Annuler') }}
+                </a>
                 <x-primary-button class="ml-3">
                     {{ __('Save') }}
                 </x-primary-button>

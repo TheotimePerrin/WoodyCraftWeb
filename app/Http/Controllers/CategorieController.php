@@ -13,7 +13,6 @@ class CategorieController extends Controller
      * Display a listing of the resource.
      */
 
-
     public function index()
     {
         $categories = Categorie::all();

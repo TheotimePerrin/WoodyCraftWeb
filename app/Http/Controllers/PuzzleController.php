@@ -34,7 +34,7 @@ class PuzzleController extends Controller
     {
         $data = $request ->validate([
             'nom' => 'required|max:100',
-            'categorie_id' => 'required|max:100',
+            'categorie_id' => 'required|numeric|between:0,99.99',
             'description' => 'required|max:500',
             'image' => 'required|max:100',
             'prix' => 'required|numeric|between:0,99.99',
@@ -77,21 +77,20 @@ class PuzzleController extends Controller
     {
         $data = $request->validate([
             'nom' => 'required|max:100',
-            'categorie' => 'required|max:100',
+            'categorie_id' => 'required|exists:categories,id',
             'description' => 'required|max:500',
             'prix' => 'required|numeric|between:0,99.99',
         ]);
-    
-        // Mise à jour des attributs du puzzle
+
         $puzzle->nom = $data['nom'];
-        $puzzle->categorie = $data['categorie'];
+        $puzzle->categorie_id = $data['categorie_id'];
         $puzzle->description = $data['description'];
         $puzzle->prix = $data['prix'];
-    
+
         $puzzle->save();
-    
+
         return redirect()->route('puzzles.edit', $puzzle->id)
-                         ->with('message', 'Le puzzle a bien été mis à jour !');
+                        ->with('message', 'Le puzzle a bien été mis à jour !');
     }
     
 
