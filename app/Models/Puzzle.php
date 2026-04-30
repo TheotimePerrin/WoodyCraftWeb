@@ -16,12 +16,19 @@ class Puzzle extends Model
         'prix',
         'image',
         'stock',
+        'fk_fournisseur', // ✅ AJOUT IMPORTANT
     ];
 
     // Relation avec la catégorie
     public function categorie()
     {
         return $this->belongsTo(Categorie::class);
+    }
+
+    // Relation avec le fournisseur
+    public function fournisseur()
+    {
+        return $this->belongsTo(Fournisseur::class, 'fk_fournisseur');
     }
 
     // Relation avec Panier via la table pivot "appartient"

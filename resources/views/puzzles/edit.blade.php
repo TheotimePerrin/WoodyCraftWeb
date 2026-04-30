@@ -44,6 +44,20 @@
                     required 
                 />
                 <x-input-error :messages="$errors->get('categorie_id')" class="mt-2" />
+            
+            </div>
+
+            <div class="mt-4">
+                <x-input-label for="fk_fournisseur" :value="__('Fournisseur')" />
+                <x-text-input 
+                    id="fk_fournisseur" 
+                    class="block mt-1 w-full" 
+                    type="text" 
+                    name="fk_fournisseur" 
+                    :value="old('fk_fournisseur', $puzzle->fk_fournisseur)" 
+                    required 
+                />
+                <x-input-error :messages="$errors->get('fk_fournisseur')" class="mt-2" />
             </div>
 
             <!-- Description -->
@@ -57,6 +71,8 @@
                 >{{ old('description', $puzzle->description) }}</x-textarea>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
+
+
 
             <!-- Image -->
             <div class="mt-4">

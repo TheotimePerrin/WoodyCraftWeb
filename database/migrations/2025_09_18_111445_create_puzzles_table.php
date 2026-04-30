@@ -6,29 +6,33 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('puzzles', function (Blueprint $table) {
             $table->id();
+
             $table->string('nom');
-            $table->unsignedBigInteger('categorie_id');
-            $table->string('description');
-            $table->string('image');
-            $table->float('prix');
-            $table->integer('stock');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+
+            $table->decimal('prix', 10, 2);
+            $table->integer('stock')->default(0);
+
+            // 🔗 Catégorie (FK)
+            $table->foreignId('categorie_id')
+                  ->constrained('categories')
+                  ->onDelete('cascade');
+
+            // 🔗 Fournisseur (FK)
+            $table->foreignId('fournisseur_id')
+                  ->nullable()
+                  ->constrained('fournisseurs')
+                  ->nullOnDelete();
+
             $table->timestamps();
-    
-            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
-    
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('puzzles');

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use  App\Models\Puzzle;
 use  App\Models\Panier;
-
+use  App\Models\Fournisseur;
 
 class PuzzleController extends Controller
 {
@@ -38,7 +38,8 @@ class PuzzleController extends Controller
             'description' => 'required|max:500',
             'image' => 'required|max:100',
             'prix' => 'required|numeric|between:0,99.99',
-            'stock'=> 'required|numeric|between:1,99'
+            'stock'=> 'required|numeric|between:1,99',
+            'fk_fournisseur' => 'required|numeric|between:0,99.99'
         ]);
 
         $puzzle = new Puzzle();
@@ -48,6 +49,7 @@ class PuzzleController extends Controller
         $puzzle->image = $request->image;
         $puzzle->prix = $request->prix;
         $puzzle->stock = $request->stock;
+        $puzzle->fk_fournisseur = $request->fk_fournisseur;
         $puzzle->save();
         return back()->with('message', "Le puzzle a bien été crée !");
     }
@@ -80,12 +82,15 @@ class PuzzleController extends Controller
             'categorie_id' => 'required|exists:categories,id',
             'description' => 'required|max:500',
             'prix' => 'required|numeric|between:0,99.99',
+            'fk_fournisseur' => 'required|exists:fournisseur,id',
         ]);
 
         $puzzle->nom = $data['nom'];
         $puzzle->categorie_id = $data['categorie_id'];
         $puzzle->description = $data['description'];
         $puzzle->prix = $data['prix'];
+        $puzzle->fk_fournisseur = $data['fk_fournisseur'];
+
 
         $puzzle->save();
 
