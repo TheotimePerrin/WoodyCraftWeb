@@ -23,6 +23,9 @@
                 
                 <x-input-label for="categorie_id" :value="__('categorie_id')" />
                 <x-text-input id="categorie_id" class="block mt-1 w-full" type="text" name="categorie_id" :value="old('categorie_id')" required autofocus />
+
+                <x-input-label for="fk_fournisseur" :value="__('fk_fournisseur')" />
+                <x-text-input id="fk_fournisseur" class="block mt-1 w-full" type="text" name="fk_fournisseur" :value="old('fk_fournisseur')" required autofocus />
                 
                 <x-input-label for="description" :value="__('description')" />
                 <x-text-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required autofocus />
